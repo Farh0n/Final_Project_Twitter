@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 
 
@@ -10,12 +10,28 @@ function LogIn(){
     const navigate = useNavigate();
     
     
+    useEffect(()=>{
+      try {
+        const newUser = localStorage.getItem('newUser');
+        if (newUser) {
+          const parsedUser = JSON.parse(newUser);
+          // Do something with parsedUser
+          localStorage.removeItem('newUser');
+        }
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+      }
+    }); 
+
+
     const handleLogin = () => {
     // Here you would typically make an API call to validate the username and password
     // For simplicity, I'm just checking if the username is 'admin' and password is 'password'
     if (username === 'admin' && password === 'password') {
       setLoggedIn(true);
       //save user to local storage
+
+      localStorage.setItem('user',JSON.stringify(2));
       navigate('/'); // Navigate to '/dashboard' route using navigate function
     } else {
       alert('Invalid username or password');

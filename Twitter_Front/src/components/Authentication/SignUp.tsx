@@ -16,6 +16,13 @@ function signup() {
             return;
         }
         //add the user to the arrays
+        const newUser={
+            name: name,
+            username:username,
+            password:password,
+            email:email
+        }
+        localStorage.setItem('newUser',JSON.stringify(newUser));
         navigate('/login');
     };
 
@@ -28,6 +35,7 @@ function signup() {
             <input type="password" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
 
             <button onClick={handleNewUser}>Sign Up</button>
+            <Link to={'/login'}><div className='cancel-button'>Cancel</div></Link>
         </>
     );
 };
