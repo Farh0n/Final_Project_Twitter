@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/PhotoUploader.css';
 
-const PhotoUploader: React.FC = () => {
+function PhotoUploader(){
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,6 @@ const PhotoUploader: React.FC = () => {
           </span>
           <input id="file-input" type="file" onChange={handleFileChange} required />
         </label>
-        <button className="file-upload">Upload File</button>
       </div>
     </div>
   );
