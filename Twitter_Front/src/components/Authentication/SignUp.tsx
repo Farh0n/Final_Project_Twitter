@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
+import './SignUp.css';
 
 
 function SignUp() {
@@ -28,13 +29,15 @@ function SignUp() {
 
     return (
         <>
-            <input type="text" placeholder="username" value={username} onChange={(e)=>setUsername(e.target.value)} required/>
-            <input type="email" placeholder="email" value={email} onChange={(e)=>setEmail(e.target.value)} required />
-            <input type="text" placeholder="name" value={name} onChange={(e)=>setName(e.target.value)} required />
-            <input type="password" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
-
+        <div className='sign-up-form'>
+            <h2>Sign In</h2>
+            <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             <button onClick={handleNewUser}>Sign Up</button>
             <Link to={'/login'}><div className='cancel-button'>Cancel</div></Link>
+        </div>
         </>
     );
 };

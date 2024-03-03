@@ -1,0 +1,37 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    background-color: #3498db;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.header > * {
+    margin: 0 10px; 
+}
+
+.profile,
+.new-tweet,
+.logout-button {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.profile:hover,
+.new-tweet:hover,
+.logout-button:hover {
+    background-color: #2980b9;
+    transition: background-color 0.3s;
+}
+
+.tweets {
+    width: 100%; 
+}

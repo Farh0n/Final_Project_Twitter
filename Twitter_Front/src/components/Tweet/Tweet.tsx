@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './Tweet.css'
 
 export type TweetProps ={
     username: string
@@ -21,22 +22,9 @@ function Tweet({username,content,image}:TweetProps){
           };
           reader.readAsDataURL(image);
       } else if (typeof image === 'string') {
-          // If image is a static image path
           setImageUrl(image);
       }
   }, [image]);
-    // useEffect(() => {
-    //     if (image) {
-    //       const reader = new FileReader();
-    //       reader.onload = () => {
-    //         const result = reader.result;
-    //         if (result && typeof result === 'string') {
-    //           setImageUrl(result);
-    //         }
-    //       };
-    //       reader.readAsDataURL(image);
-    //     }
-    //   }, [image]);
 
       const showMiniProfile = ()=>{
 

@@ -1,0 +1,34 @@
+.tweet {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%; /* Make the Tweet component take the whole width */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+.username {
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.content {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.tweet img {
+    width: 100%; /* Make the image take the whole width of its container */
+    max-height: 250px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.tweet:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+}

@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import LogIn from './components/Authentication/LogIn.tsx'
 import SignUp from './components/Authentication/SignUp.tsx';
+import NewTweet from './components/Tweet/NewTweet.tsx';
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path:'/tweet',
     // element:
+  },
+  {
+    path:'/new',
+    element: <NewTweet/>
   }
 ]);
 

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import image1 from '../images/icon.png';
 import image2 from '../images/FullMoon2010.jpg';
 import Tweet from './Tweet/Tweet';
+import '../styles/MainMenu.css'
 
 
 function MainMenu(){
@@ -27,7 +28,6 @@ function MainMenu(){
     };
 
     useEffect(() => {
-        // Check if the user is logged in
         if (!localStorage.getItem("user")) {
             // If not logged in, redirect to the login page
             navigate('/login');
@@ -44,26 +44,28 @@ function MainMenu(){
 
     return(
         <>
-            <div className='container'>    
-                <div className='header'>
-                    <Link to={'/profile'}><div className='profile'> Hi User</div></Link>
-                    <Link to={'/tweet'}><div className='new tweet'>New Tweet</div></Link>
-                    <button onClick={handelLogOut}> Log Out</button>
-                </div>
-
-                <div className='tweets'>
-                    {tweets.map((tweet,index)=>{
-                      return <Tweet
-                        key={index}
-                        username={tweet.username}
-                        content={tweet.content}
-                        image={tweet.image}
-                    />
-                    })}
-                </div>
+        <div className='header'>
+            <Link to={'/profile'} className='profile'>Hi User</Link>
+            <Link to={'/new'} className='new-tweet'>New Tweet</Link>
+            <button onClick={handelLogOut} className='logout-button'>Log Out</button>
+        </div>
+    
+        <div className='container'>
+            <div className='tweets'>
+                {tweets.map((tweet, index) => {
+                    return (
+                        <Tweet
+                            key={index}
+                            username={tweet.username}
+                            content={tweet.content}
+                            image={tweet.image}
+                        />
+                    );
+                })}
             </div>
-
-        </>
+        </div>
+    </>
     )
 }
 export default MainMenu;
+

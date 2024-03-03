@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
+import './LogIn.css'
 
 
 function LogIn(){
@@ -66,7 +67,7 @@ function LogIn(){
   
     return(
         <>
-             <div>
+             <div className='login'>
                 <h2>Login</h2>
                 <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
                 <br />

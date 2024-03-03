@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PhotoUploader from '../PhotoUploader';
 import {Link,useNavigate } from 'react-router-dom';
+import './NewTweet.css'
 
 
 function NewTweet (){
