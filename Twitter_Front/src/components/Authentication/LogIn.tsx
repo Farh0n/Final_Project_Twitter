@@ -7,6 +7,26 @@ function LogIn(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
+    const [users,setUsers] = useState([
+      {
+        name: "Farhan",
+        username: "farhan1",
+        email: "farhan@gamil.com",
+        password: "test1234"
+    },
+    {
+        name: "sahand",
+        username: "sahand2",
+        email: "sahand@example.com",
+        password: "password123"
+    },
+    {
+        name: "shadan",
+        username: "shirzadi",
+        email: "shadan@example.com",
+        password: "test23"
+    }
+    ]);
     const navigate = useNavigate();
     
     
@@ -15,7 +35,8 @@ function LogIn(){
         const newUser = localStorage.getItem('newUser');
         if (newUser) {
           const parsedUser = JSON.parse(newUser);
-          // Do something with parsedUser
+          const newValue =[parsedUser, ...users];
+          setUsers(newValue);
           localStorage.removeItem('newUser');
         }
       } catch (error) {
@@ -25,19 +46,24 @@ function LogIn(){
 
 
     const handleLogin = () => {
-    // Here you would typically make an API call to validate the username and password
-    // For simplicity, I'm just checking if the username is 'admin' and password is 'password'
-    if (username === 'admin' && password === 'password') {
-      setLoggedIn(true);
-      //save user to local storage
+      let loggedInUser = null;
 
-      localStorage.setItem('user',JSON.stringify(2));
-      navigate('/'); // Navigate to '/dashboard' route using navigate function
-    } else {
-      alert('Invalid username or password');
-    // navigate('/');
-    }
+      for (const user of users) {
+          if (user.username === username && user.password === password) {
+              loggedInUser = user;
+              break;
+          }
+      }
+
+      if (loggedInUser !== null) {
+          setLoggedIn(true);
+          localStorage.setItem('user', JSON.stringify(loggedInUser));
+          navigate('/');
+      } else {
+          alert('Invalid username or password');
+      }
   };
+  
     return(
         <>
              <div>

@@ -1,32 +1,42 @@
 import { useEffect, useState } from 'react';
 
-type User = {
-    name: string
-    username: string
-    image: File |null 
-  }
-
 export type TweetProps ={
-    user: User
+    username: string
     content: String
-    image: File | null
+    image: String | File
 }
 
-function Tweet({user,content,image}:TweetProps){
+function Tweet({username,content,image}:TweetProps){
     const [imageUrl, setImageUrl] = useState<string | null>(null);
    
+
     useEffect(() => {
-        if (image) {
+      if (image instanceof File) {
           const reader = new FileReader();
           reader.onload = () => {
-            const result = reader.result;
-            if (result && typeof result === 'string') {
-              setImageUrl(result);
-            }
+              const result = reader.result;
+              if (result && typeof result === 'string') {
+                  setImageUrl(result);
+              }
           };
           reader.readAsDataURL(image);
-        }
-      }, [image]);
+      } else if (typeof image === 'string') {
+          // If image is a static image path
+          setImageUrl(image);
+      }
+  }, [image]);
+    // useEffect(() => {
+    //     if (image) {
+    //       const reader = new FileReader();
+    //       reader.onload = () => {
+    //         const result = reader.result;
+    //         if (result && typeof result === 'string') {
+    //           setImageUrl(result);
+    //         }
+    //       };
+    //       reader.readAsDataURL(image);
+    //     }
+    //   }, [image]);
 
       const showMiniProfile = ()=>{
 
@@ -34,11 +44,11 @@ function Tweet({user,content,image}:TweetProps){
 
       return (
         <div className='tweet'>
-            <div className='username' onClick={showMiniProfile}>by: {user.username}</div>
+            <div className='username' onClick={showMiniProfile}>by: {username}</div>
             <div className='content'> {content}</div>
             {image && (
                 <div>
-                {imageUrl && <img src={imageUrl} alt={`${image.name}`} style={{ maxWidth: '65%', maxHeight: '200px' }} />}
+                {imageUrl && <img src={imageUrl} alt={`${username}`} style={{ maxWidth: '65%', maxHeight: '200px' }} />}
                 </div>
             )}
         </div>

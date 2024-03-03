@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import '../styles/PhotoUploader.css';
 
-function PhotoUploader(){
+type PhotoUploaderProps={
+  onFileUpload: (file:File)=>void;
+}
+
+function PhotoUploader({onFileUpload}:PhotoUploaderProps){
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,6 +16,7 @@ function PhotoUploader(){
         const result = reader.result;
         if (result && typeof result === 'string') {
           setImagePreview(result);
+          onFileUpload(file);
         }
       };
       reader.readAsDataURL(file);

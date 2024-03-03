@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 
 
-function signup() {
+function SignUp() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -15,7 +15,6 @@ function signup() {
             alert("please fill all the details");
             return;
         }
-        //add the user to the arrays
         const newUser={
             name: name,
             username:username,
@@ -40,4 +39,4 @@ function signup() {
     );
 };
 
-export default signup;
+export default SignUp;

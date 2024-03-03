@@ -5,7 +5,12 @@ import {Link,useNavigate } from 'react-router-dom';
 
 function NewTweet (){
     const [content, setContent] = useState('');
+    const [uploadedFile, setUploadedFile] = useState<File | null>(null);
     const navigate = useNavigate();
+
+    const handleFileUpload = (file: File) => {
+        setUploadedFile(file);
+    };
 
     const uploadTweet=()=>{
         if(!content){
@@ -13,14 +18,24 @@ function NewTweet (){
             return;
         }
         //make tweet and add to the tweets
-        navigate('/');
+        const currentUser = localStorage.getItem('user');
+        if(currentUser){
+            const parsedUser=JSON.parse(currentUser);
+            const newTweet ={
+                username: parsedUser,
+                content:content,
+                image:uploadedFile
+            }
+            localStorage.setItem('newTweet',JSON.stringify(newTweet));
+            navigate('/');
+        }
 
     }
 
     return (
         <div>
             <input type="text" placeholder='Content' value={content} onChange={(e)=> setContent(e.target.value)} />
-            <PhotoUploader/>
+            <PhotoUploader onFileUpload={handleFileUpload}/>
             <button onClick={uploadTweet}>Tweet</button>
             <Link to={'/'}><div className='cancel-button'>Cancel</div></Link>
         </div>
