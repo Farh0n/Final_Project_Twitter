@@ -5,16 +5,18 @@ import '../styles/MainMenu.css'
 import {get} from '../utils/httpClient';
 
 interface TweetData {
-    tweetId:number;
+    id:number;
+    user_id:number;
     username:string;
     content:string;
-    image:string;
+    image_url:string;
 }
 
 
 function MainMenu(){
     const navigate = useNavigate();
     const [tweets, setTweets] = useState<TweetData[]>([]);
+    const [username,setUsername] = useState<string|null>(null);
 
     const handleLogOut=()=>{
         localStorage.removeItem('user');
@@ -39,6 +41,11 @@ function MainMenu(){
             // If not logged in, redirect to the login page
             navigate('/login');
         }
+        const currentUser = localStorage.getItem('user');
+        if(currentUser){
+            const parsedUser=JSON.parse(currentUser);
+            setUsername(parsedUser.username);
+        }
         loadTweets();
         // const newTweet = localStorage.getItem('newTweet')
         // if(newTweet) {
@@ -53,7 +60,7 @@ function MainMenu(){
     return(
         <>
         <div className='header'>
-            <Link to={'/profile'} className='profile'>Hi User</Link>
+            <Link to={'/profile'} className='profile'>Hi {username}</Link>
             <Link to={'/new'} className='new-tweet'>New Tweet</Link>
             <button onClick={handleLogOut} className='logout-button'>Log Out</button>
         </div>
@@ -66,7 +73,7 @@ function MainMenu(){
                             key={index}
                             username={tweet.username}
                             content={tweet.content}
-                            image={tweet.image}
+                            image={tweet.image_url}
                         />
                     );
                 })}

@@ -120,6 +120,15 @@ app.post('/comment/new',async(req,res)=>{
   }
 });
 
+app.get('/comments',async(req,res)=>{
+  try{
+    const comments = await sql`SELECT * FROM comments`;
+    res.send(comments);
+  }catch(error){
+    res.send("Internal server error for getting comments :" + error);
+  }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is at http://localhost:${PORT}`);
   });

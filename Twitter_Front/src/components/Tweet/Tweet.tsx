@@ -1,4 +1,5 @@
 import './Tweet.css'
+// import React, { useState, useEffect } from 'react';
 
 export type TweetProps ={
     username: string
@@ -7,7 +8,7 @@ export type TweetProps ={
 }
 
 function Tweet({username,content,image}:TweetProps){
-    // const [imageUrl, setImageUrl] = useState<string | null>(null);
+//     const [imageUrl, setImageUrl] = useState<string | null>(null);
    
 
 //     useEffect(() => {
@@ -29,7 +30,12 @@ function Tweet({username,content,image}:TweetProps){
                 {imageUrl && <img src={imageUrl} alt={`${username}`} style={{ maxWidth: '65%', maxHeight: '200px' }} />}
                 </div>
             )} */}
-            <img src={image} alt={`${username}`}></img>
+            <img src={`${image}`} alt={`${username}`}></img>
+            {/* {imageUrl && (
+                <div>
+                    <img src={imageUrl} alt={`${username}`} style={{ maxWidth: '65%', maxHeight: '200px' }} />
+                </div>
+            )} */}
         </div>
       );
 };

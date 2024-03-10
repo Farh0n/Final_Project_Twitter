@@ -1,37 +1,67 @@
-.container {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
 
-.header {
-    background-color: #3498db;
-    padding: 10px 0;
+  
+  /* Header Styles */
+  .header {
+    background-color: #00aced; /* Classic Twitter blue */
+    color: white;
     width: 100%;
-}
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+  }  
 
-.header > * {
-    margin: 0 10px; 
-}
-
-.profile,
-.new-tweet,
-.logout-button {
-    color: #fff;
+  .container {
+    /* width: 65%; */
+    padding: 20px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Link Styles */
+  .profile,
+  .new-tweet {
     text-decoration: none;
+    color: white;
     padding: 5px 10px;
     border-radius: 5px;
-}
-
-.profile:hover,
-.new-tweet:hover,
-.logout-button:hover {
-    background-color: #2980b9;
-    transition: background-color 0.3s;
-}
-
-.tweets {
-    width: 100%; 
-}
+    font-weight: bold;
+  }
+  
+  .profile:hover,
+  .new-tweet:hover {
+    background-color: #0087ce; /* Slightly darker blue on hover */
+    cursor: pointer;
+  }
+  
+  /* Button Styles */
+  .logout-button {
+    background-color: #00aced; /* Same blue as header */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    background-color: #0087ce; /* Darker blue on hover */
+  }
+  
+  /* Tweets Section (Optional) */
+  .tweets {
+    width: 65%;
+    border-top: 1px solid #e0e0e0; /* Light gray border for tweets section */
+  }
+  

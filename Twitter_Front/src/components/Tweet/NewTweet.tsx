@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import PhotoUploader from '../PhotoUploader';
+// import PhotoUploader from '../PhotoUploader';
 import {Link,useNavigate } from 'react-router-dom';
-import './NewTweet.css'
 import { post } from '../../utils/httpClient';
+import './NewTweet.css'
 
 
 function NewTweet (){
     const [content, setContent] = useState('');
     const [imageUrl, setImageUrl] = useState('');
-    const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+    // const [uploadedFile, setUploadedFile] = useState<File | null>(null);
     const navigate = useNavigate();
 
-    const handleFileUpload = (file: File) => {
-        setUploadedFile(file);
-    };
+    // const handleFileUpload = (file: File) => {
+    //     setUploadedFile(file);
+    // };
 
     const uploadTweet= async()=>{
         if(!content||!imageUrl){
@@ -53,13 +53,20 @@ function NewTweet (){
     }
 
     return (
-        <div>
-            <input type="text" placeholder='Content' value={content} onChange={(e)=> setContent(e.target.value)} />
+        // <div>
+        //     <input type="text" placeholder='Content' value={content} onChange={(e)=> setContent(e.target.value)} />
+        //     {/* <PhotoUploader onFileUpload={handleFileUpload}/> */}
+        //     <input type="text" placeholder='Image URL' value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)}></input>
+        //     <button onClick={uploadTweet}>Tweet</button>
+        //     <Link to={'/'}><div className='cancel-button'>Cancel</div></Link>
+        // </div>
+        <div className="new-tweet-form">
+            <input className="tweet-content-input" type="text" placeholder='Content' value={content} onChange={(e)=> setContent(e.target.value)} />
             {/* <PhotoUploader onFileUpload={handleFileUpload}/> */}
-            <input type="text" placeholder='Image URL' value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)}></input>
-            <button onClick={uploadTweet}>Tweet</button>
+            <input className="tweet-image-input" type="text" placeholder='Image URL' value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)}></input>
+            <button className="tweet-submit-button" onClick={uploadTweet}>Tweet</button>
             <Link to={'/'}><div className='cancel-button'>Cancel</div></Link>
-        </div>
+        </div>  
     );
 };
 

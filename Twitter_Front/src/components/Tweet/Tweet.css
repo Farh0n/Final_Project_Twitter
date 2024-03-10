@@ -1,34 +1,26 @@
 .tweet {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 20px;
-    width: 100%; /* Make the Tweet component take the whole width */
-    box-sizing: border-box; /* Include padding and border in the width calculation */
+    /* min-width: 65%; */
+  /* max-width: 500px; Prevent overly wide tweets on large screens */
+  border-radius: 15px;
+  background-color: #f7f7f7; /* Snowish background */
+  padding: 15px;
+  margin-bottom: 15px;
+  height: 300px; /* Fixed height for consistent layout */
+  overflow-y: auto; /* Allow scrolling for excess content */
 }
 
 .username {
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    margin-bottom: 5px;
-    cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 5px;
+  cursor: pointer; /* Indicate interactivity for username link */
 }
 
 .content {
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-.tweet img {
-    width: 100%; /* Make the image take the whole width of its container */
-    max-height: 250px;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-.tweet:hover {
-    background-color: #f0f0f0;
-    transition: background-color 0.3s;
+img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
 }
