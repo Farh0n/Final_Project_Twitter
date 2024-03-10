@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import './SignUp.css';
+import {post} from '../../utils/httpClient';
 
 
 function SignUp() {
@@ -11,19 +12,44 @@ function SignUp() {
     const navigate = useNavigate();
 
 
-    const handleNewUser =()=>{
+    const handleNewUser =async()=>{
         if(!name || !password || !email || !username){
             alert("please fill all the details");
             return;
         }
         const newUser={
-            name: name,
             username:username,
             password:password,
-            email:email
+            email:email,
+            name: name
         }
-        localStorage.setItem('newUser',JSON.stringify(newUser));
-        navigate('/login');
+        try {
+            // Make a POST request to add a new task
+            // const response = await fetch('http://localhost:3002/signup', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(newUser),
+            // });
+
+            // const addedUser = await response.json();
+            // // localStorage.setItem('newUser',JSON.stringify(newUser));
+            // navigate('/login');
+            const response = await post('/signup',{ username:username,
+                password:password,
+                email:email,
+                firstname: name
+            });
+            if(response){
+                navigate('/login');
+            }
+            
+        } catch (error) {
+            console.error('Error adding task:', error);
+            alert('Error adding task. Please try again.');
+        }
+        
     };
 
 
