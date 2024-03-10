@@ -1,30 +1,20 @@
-import { useEffect, useState } from 'react';
 import './Tweet.css'
 
 export type TweetProps ={
     username: string
     content: String
-    image: String | File
+    image: string
 }
 
 function Tweet({username,content,image}:TweetProps){
-    const [imageUrl, setImageUrl] = useState<string | null>(null);
+    // const [imageUrl, setImageUrl] = useState<string | null>(null);
    
 
-    useEffect(() => {
-      if (image instanceof File) {
-          const reader = new FileReader();
-          reader.onload = () => {
-              const result = reader.result;
-              if (result && typeof result === 'string') {
-                  setImageUrl(result);
-              }
-          };
-          reader.readAsDataURL(image);
-      } else if (typeof image === 'string') {
-          setImageUrl(image);
-      }
-  }, [image]);
+//     useEffect(() => {
+//     if (typeof image === 'string') {
+//           setImageUrl(image);
+//     }
+//   }, [image]);
 
       const showMiniProfile = ()=>{
 
@@ -34,11 +24,12 @@ function Tweet({username,content,image}:TweetProps){
         <div className='tweet'>
             <div className='username' onClick={showMiniProfile}>by: {username}</div>
             <div className='content'> {content}</div>
-            {image && (
+            {/* {image && (
                 <div>
                 {imageUrl && <img src={imageUrl} alt={`${username}`} style={{ maxWidth: '65%', maxHeight: '200px' }} />}
                 </div>
-            )}
+            )} */}
+            <img src={image} alt={`${username}`}></img>
         </div>
       );
 };

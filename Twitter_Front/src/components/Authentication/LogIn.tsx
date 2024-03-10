@@ -48,33 +48,6 @@ function LogIn(){
 
 
     const handleLogin = async () => {
-    //   try {
-    //     //   const response = await fetch('http://localhost:3002/login', {
-    //     //       method: 'POST',
-    //     //       headers: {
-    //     //           'Content-Type': 'application/json'
-    //     //       },
-    //     //       body: JSON.stringify({
-    //     //           username: username,
-    //     //           password: password
-    //     //       })
-    //     //   });
-  
-        //   if (response.ok) {
-        //       const data = await response.json();
-        //       const loggedInUser = data.user; // Assuming the response includes user details
-        //       setLoggedIn(true);
-        //       localStorage.setItem('user', JSON.stringify(loggedInUser));
-        //       navigate('/');
-        //   } else {
-    //     //       // Handle invalid credentials or other errors
-    //     //       const errorData = await response.json();
-    //     //       alert(errorData.error);
-    //     //   }
-    //   } catch (error) {
-        //   console.error('Error occurred during login:', error);
-        //   alert('An error occurred during login');
-    //   }
     try{
         const response = await post('/login',{
             username:username,
@@ -82,9 +55,9 @@ function LogIn(){
         });
         console.log(response);
         if (response) {
-            console.log("boobs");
-            const loggedInUser = response.user; // Assuming the response includes user details
+            const loggedInUser = response; // Assuming the response includes user details
             setLoggedIn(true);
+            console.log(loggedInUser);
             localStorage.setItem('user', JSON.stringify(loggedInUser));
             navigate('/');
         } 

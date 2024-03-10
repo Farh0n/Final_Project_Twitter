@@ -37,6 +37,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
   });
 
+
+  // -------- user api's -----
 app.post('/login', async (req, res) => {
     try {
       const { username, password } = req.body;
@@ -79,12 +81,44 @@ app.post('/signup',async(req,res)=>{
     }
 });
 
-// async function getPgVersion() {
-//   const result = await sql`select version()`;
-//   console.log(result);
-// }
 
-// getPgVersion();
+// --------- Tweet api's ------
+
+app.post('/tweet/new',async(req,res)=>{
+  const{userId,username,content,imageUrl}=req.body;
+  try{
+    const result = await sql`INSERT INTO tweets(user_id,username,content,image_url) values(${userId},${username},${content},${imageUrl}) RETURNING *`;
+    res.status(201).send(result[0]);
+  }catch(error) {
+    console.error('Error adding Tweet: ',error);
+        res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/tweets',async(req,res)=>{
+  try{
+    const tweets = await sql`SELECT * FROM tweets`;
+    res.send(tweets);
+  }catch(error){
+    res.send("Internal server error for getting tweets :" + error);
+  }
+});
+
+
+
+
+
+// ------- Comment api's ---------
+app.post('/comment/new',async(req,res)=>{
+  const{tweetId,username,commentDate,commentContent}=req.body;
+  try{
+    const result = await sql`INSERT INTO comments(tweet_id,username,comment_date,comment_content) values(${tweetId},${username},${commentDate},${commentContent}) RETURNING *`;
+    res.status(201).send(result[0]);
+  }catch(error) {
+    console.error('Error adding Tweet: ',error);
+        res.status(500).send('Internal Server Error');
+  }
+});
 
 app.listen(PORT, () => {
     console.log(`Server is at http://localhost:${PORT}`);
