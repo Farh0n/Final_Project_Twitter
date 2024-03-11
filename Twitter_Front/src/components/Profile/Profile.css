@@ -1,0 +1,74 @@
+/* Main container */
+    
+/* Header */
+.header {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+}
+
+.header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+/* User info */
+.user-info {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 25px;
+}
+
+.user-info label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.user-info input[type="text"],
+.user-info input[type="email"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.user-info input[type="text"]:read-only,
+.user-info input[type="email"]:read-only {
+    background-color: #fff;
+    color: #555;
+}
+
+.user-info button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-info button:hover {
+    background-color: #2980b9;
+}
+
+/* User tweets */
+.user-tweets {
+    /* Add your styling for user tweets here */
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Tweet
+.tweet {
+    /* Add your styling for individual tweets here 
+} */

@@ -22,6 +22,29 @@ export async function post(path: string, body: any): Promise<any> {
     }
 }
 
+export async function put(path: string, body: any): Promise<any> {
+    const myHeaders: Headers = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const raw: string = JSON.stringify(body);
+
+    const requestOptions: RequestInit = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    try {
+        const response = await fetch(`${BASE_URL}${path}`, requestOptions);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log('error', error);
+        return null;
+    }
+}
+
+
 export async function get(path: string): Promise<any> {
     const myHeaders: Headers = new Headers();
     myHeaders.append("Content-Type", "application/json");

@@ -17,12 +17,6 @@ function SignUp() {
             alert("please fill all the details");
             return;
         }
-        const newUser={
-            username:username,
-            password:password,
-            email:email,
-            name: name
-        }
         try {
             // Make a POST request to add a new task
             // const response = await fetch('http://localhost:3002/signup', {

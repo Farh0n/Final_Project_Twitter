@@ -13,9 +13,6 @@
     padding: 20px;
     width: 400px; /* Set a fixed width */
   }
-  Button{
-    background-color: #00aced;
-  }
   
   .new-tweet-form input {
     margin-bottom: 10px; /* Add space between elements */

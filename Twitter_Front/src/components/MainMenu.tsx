@@ -27,7 +27,7 @@ function MainMenu(){
         try{
             const response = await get('/tweets');
             if(response){
-                console.log("tweets");
+                // console.log("tweets");
                 setTweets(response);
             }
         }catch(error){

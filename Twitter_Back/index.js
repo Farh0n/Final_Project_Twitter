@@ -81,6 +81,18 @@ app.post('/signup',async(req,res)=>{
     }
 });
 
+app.put('/user/:id',async(req,res)=>{
+  const userId = +req.params.id;
+  const{email,firstname} = req.body;
+  try{
+    const result = await sql`UPDATE users SET email= ${email}, first_name= ${firstname} WHERE id=${userId} RETURNING *`;
+    res.status(200).send(result[0]);
+  }catch(error){
+    console.error("Errot Updating user : " + error);
+    res.status(500).send('Internal server error');
+  }
+});
+
 
 // --------- Tweet api's ------
 
@@ -104,6 +116,16 @@ app.get('/tweets',async(req,res)=>{
   }
 });
 
+app.get('/tweets/:id',async(req,res)=>{
+  try{
+    const user_id= req.params.id;
+    const tweets = await sql`SELECT * FROM tweets WHERE user_id=${user_id}`;
+    res.send(tweets);
+  }catch(error){
+    res.send('Internal server error, get user tweets');
+  }
+});
+
 
 
 
@@ -120,9 +142,10 @@ app.post('/comment/new',async(req,res)=>{
   }
 });
 
-app.get('/comments',async(req,res)=>{
+app.get('/comments/:id',async(req,res)=>{
   try{
-    const comments = await sql`SELECT * FROM comments`;
+    const tweet_id = req.params.id;
+    const comments = await sql`SELECT * FROM comments WHERE tweet_id=${tweet_id}`;
     res.send(comments);
   }catch(error){
     res.send("Internal server error for getting comments :" + error);

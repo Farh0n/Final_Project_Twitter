@@ -9,6 +9,7 @@ import {
 import LogIn from './components/Authentication/LogIn.tsx'
 import SignUp from './components/Authentication/SignUp.tsx';
 import NewTweet from './components/Tweet/NewTweet.tsx';
+import Profile from './components/Profile/Profile.tsx';
 
 
 const router = createBrowserRouter([
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
   },
   {
     path:'/profile',
-    // element: //profile (user)
+    element: <Profile/>
   },
   {
     path:'/signup',
@@ -27,10 +28,6 @@ const router = createBrowserRouter([
   {
     path:'/login',
     element:<LogIn/>
-  },
-  {
-    path:'/profile/edit',
-    // element: edit profile
   },
   {
     path:'/tweet',
